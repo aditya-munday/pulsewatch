@@ -1,0 +1,22 @@
+# Docker Compose for PulseWatch Local Development (Backend)
+# Note: As requested for beginner simplicity, NO persistent volumes are configured here.
+# Containers run clean and stateless for easy learning and reset.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pulsewatch_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pulsewatch_db
+
+  redis:
+    image: redis:7-alpine
+    container_name: pulsewatch_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
